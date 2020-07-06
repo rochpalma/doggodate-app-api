@@ -285,7 +285,7 @@ CREATE TABLE dog_profile(
     id SERIAL PRIMARY KEY,
     full_name TEXT NOT NULL,
     age INTEGER NOT NULL,
-    about_me TEXT NOT NULL,
+    about_me TEXT,
     breed breeds NOT NULL,
     size sizes NOT NULL,
     gender TEXT NOT NULL,
