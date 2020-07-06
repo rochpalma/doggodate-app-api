@@ -1,6 +1,6 @@
 CREATE TABLE comments (
-    id SERIAL PRIMARY KEY,
+    comment_id INTEGER REFERENCES dog_profile(id) ON DELETE CASCADE NOT NULL,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-    comment TEXT NOT NULL,
+    content TEXT NOT NULL,
     created_at DATE NOT NULL
 );
