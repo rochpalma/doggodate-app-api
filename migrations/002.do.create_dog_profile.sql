@@ -275,7 +275,7 @@ CREATE TYPE breeds AS ENUM (
 'Working Kelpie',
 'Xoloitzcuintli',
 'Yakutian Laika',
-'Yorkshire Terrier',
+'Yorkshire Terrier'
 );
 
 DROP TYPE IF EXISTS sizes;
@@ -289,5 +289,5 @@ CREATE TABLE dog_profile(
     breed breeds NOT NULL,
     size sizes NOT NULL,
     gender TEXT NOT NULL,
-    owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+    owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
 )

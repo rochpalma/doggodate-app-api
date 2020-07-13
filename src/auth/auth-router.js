@@ -1,13 +1,13 @@
 const express = require('express');
 const AuthService = require('./auth-service');
-//add thr middleware here
+const { requireAuth } = require("../middleware/jwt-auth");
 const authRouter = express.Router();
 const jsonBodyParser = express.json();
 
 authRouter
     .post('/login', jsonBodyParser, (req, res, next) => {
         const { email, password } = req.body;
-        const loginUser = { email, password};
+        const loginUser = { email, password };
 
         for (const [key, value] of Object.entries(loginUser)) {
             if (value === null)
