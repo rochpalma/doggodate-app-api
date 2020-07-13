@@ -15,7 +15,7 @@ CREATE TABLE dog_profile(
     breed breeds NOT NULL,
     size sizes NOT NULL,
     gender TEXT NOT NULL,
-    owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+    owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
 )
 
 INSERT INTO dog_profile (full_name, age, about_me, breed, size, gender, owner_id) VALUES
@@ -23,8 +23,8 @@ INSERT INTO dog_profile (full_name, age, about_me, breed, size, gender, owner_id
         'Botchog',
         '6',
         'Hi! Im Botchog, 6yo',
-        'poodle',
-        'medium',
+        'Poodle (Miniature)',
+        'Medium',
         'male',
         '1'       
     );
