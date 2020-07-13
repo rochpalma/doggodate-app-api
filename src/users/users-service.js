@@ -35,7 +35,7 @@ const UsersService = {
     hashPassword(password) {
       return bcrypt.hash(password, 12);
     },
-    hasUserWithEmail(db, email) {
+    hasExistingEmail(db, email) {
       return db('users')
         .where({ email })
         .first()
