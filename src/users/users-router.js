@@ -8,10 +8,12 @@ const jsonParser = express.json();
 usersRouter
   .route('/')
   .get((req, res, next) => {
+    console.log(req.app.get('db'));
     UsersService.getAllUsers(req.app.get('db'))
       .then((users) => {
         res.json(users.map(UsersService.serializeUser));
       })
+
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
@@ -63,7 +65,7 @@ usersRouter.route('/getdetails').get(requireAuth, (req, res) => {
 
 usersRouter
   .route('/:user_id')
-  .all(requireAuth)
+  .all(requireAuth)//has issue
   .all((req, res, next) => {
     UsersService.getUserById(req.app.get('db'), req.params.user_id).then(
       (user) => {

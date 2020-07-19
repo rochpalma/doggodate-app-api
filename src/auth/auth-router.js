@@ -8,7 +8,7 @@ authRouter
     .post('/login', jsonBodyParser, (req, res, next) => {
         const { email, password } = req.body;
         const loginUser = { email, password };
-
+        console.log(loginUser);
         for (const [key, value] of Object.entries(loginUser)) {
             if (value === null)
                 return res.status(400).json({
@@ -28,22 +28,22 @@ authRouter
 
                 return AuthService.comparePasswords(
                     loginUser.password, dbUser.password
-                ).then(compareMatch => {
+                )
+                .then(compareMatch => {
                     if(!compareMatch)
                         return res.status(400).json({
-                            error: `Incorrect email or password`
-                        })
-                    
+                            error: `Incorrect password`
+                    })
+                    debugger
                     const sub = dbUser.email;
                     const payload = { user_id: dbUser.id };
                     res.send({
                         authToken: AuthService.createJwt(sub, payload),
-                        // user_id: dbUser.id
                     });
                 });
 
             })
-            .catch(next);        
+        .catch(next);        
     });
 
 authRouter
