@@ -8,7 +8,6 @@ const jsonParser = express.json();
 usersRouter
   .route('/')
   .get((req, res, next) => {
-    console.log(req.app.get('db'));
     UsersService.getAllUsers(req.app.get('db'))
       .then((users) => {
         res.json(users.map(UsersService.serializeUser));
