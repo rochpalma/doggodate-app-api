@@ -7,6 +7,7 @@ const { NODE_ENV } = require('./config')
 //require the router files here
 const usersRouter = require('./users/users-router');
 const authRouter = require('./auth/auth-router');
+const dogsRouter = require('./dogs/dogs-router');
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(cors());
 //use thre routers
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/dogs', dogsRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
