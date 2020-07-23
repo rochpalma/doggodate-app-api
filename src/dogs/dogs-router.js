@@ -15,7 +15,7 @@ dogsRouter
 
       .catch(next);
   })
-//   .post(requireAuth, jsonParser, (req, res, next) => {
+  // .post(requireAuth, jsonParser, (req, res, next) => {
 .post(jsonParser, (req, res, next) => {
     const { full_name, age, about_me, breed, size, gender, owner_id } = req.body;
     const newDog = { full_name, age, about_me, breed, size, gender, owner_id };
