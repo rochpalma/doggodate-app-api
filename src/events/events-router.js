@@ -16,8 +16,8 @@ eventsRouter
       .catch(next);
   })
 .post(jsonParser, (req, res, next) => {
-    const { user_id, event_name, location, created_at, start_at, end_at, recipient } = req.body;
-    const newEvent = { user_id, event_name, location, created_at, start_at, end_at, recipient };
+    const { user_id, event_name, description, location, start_time, end_time, created_at, recipient } = req.body;
+    const newEvent = { user_id, event_name, description, location, start_time, end_time, recipient };
 
     for (const [key, value] of Object.entries(newEvent)) {
       if (value == null) {
@@ -26,6 +26,7 @@ eventsRouter
           .json({ error: { message: `Missing '${key}' in request body` } });
       }
     }
+    newEvent.created_at = created_at;
 
     EventsService.insertEvent(req.app.get('db'), newEvent).then(
         (event) => {
