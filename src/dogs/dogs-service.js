@@ -7,6 +7,9 @@ const DogsService = {
     getDogById(db, id) {
       return db.from('dog_profile').select('*').where('id', id).first();
     },
+    getDogsByOwnerId(db, owner_id) {
+      return db.from('dog_profile').select('*').where('owner_id', owner_id);
+    },
     insertDog(db, newDog) {
       return db
         .insert(newDog)
