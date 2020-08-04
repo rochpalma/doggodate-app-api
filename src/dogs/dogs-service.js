@@ -4,10 +4,14 @@ const DogsService = {
     getAllDogs(db) {
       return db.from('dog_profile').select('*');
     },
+    // getAllDogs(db,owner_id) {
+    //   return db.from('dog_profile').select('*').whereNot('owner_id',owner_id);
+    // },
     getDogById(db, id) {
       return db.from('dog_profile').select('*').where('id', id).first();
     },
     getDogsByOwnerId(db, owner_id) {
+      // return db.from('dog_profile').select('*').where('owner_id', owner_id);
       return db.from('dog_profile').select('*').where('owner_id', owner_id);
     },
     insertDog(db, newDog) {
