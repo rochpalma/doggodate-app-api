@@ -74,4 +74,15 @@ eventsRouter
       .catch(next);
   });
 
+  eventsRouter
+  .route('/my-events/:user_id')
+  .get((req, res, next) => {
+    EventsService.getEventsByUser(req.app.get('db'), req.params.user_id)
+      .then((events) => {
+        res.json(events.map(EventsService.serializeEvent));
+      })
+
+      .catch(next);
+  })
+
 module.exports = eventsRouter;

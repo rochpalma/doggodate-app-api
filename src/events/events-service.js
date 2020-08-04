@@ -7,6 +7,13 @@ const EventsService = {
     getEventById(db, id) {
       return db.from('events').select('*').where('id', id).first();
     },
+    getEventsByUser(db, user_id) {
+      return (
+        db.from('events').select('*').where('user_id', user_id)
+        .orWhere('recipient',user_id)
+      );
+    },
+
     insertEvent(db, newEvent) {
       return db
         .insert(newEvent)
