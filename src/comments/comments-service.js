@@ -4,6 +4,11 @@ const CommentsService = {
     getAllComments(db) {
       return db.select('*').from('comments')
     },
+
+    getProfileComments(db,id) {
+      return db.select('*').from('comments').where('profile_id',id)
+
+    },
   
     insertComment(db, newComment) {
       return db

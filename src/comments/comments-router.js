@@ -102,4 +102,14 @@ commentsRouter
       .catch(next)
   })
 
+  commentsRouter
+  .route('/dogs/:dog_id')
+  .get((req, res, next) => {
+    CommentsService.getProfileComments(req.app.get('db'),req.params.dog_id)
+      .then(comments => {
+        res.json(comments.map(serializeComment))
+      })
+      .catch(next)
+  })
+
 module.exports = commentsRouter
