@@ -5,6 +5,7 @@ CREATE TABLE events (
     event_desc TEXT,
     place TEXT NOT NULL,
     created_at DATE NOT NULL,
+    event_date DATE NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
     recipient INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
