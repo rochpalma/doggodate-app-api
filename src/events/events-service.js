@@ -30,6 +30,7 @@ const EventsService = {
         description: xss(event.description),
         location: xss(event.location),
         created_at: xss(event.created_at),
+        event_date: xss(event.event_date),
         start_time: xss(event.start_time),
         end_time: xss(event.end_time),
         recipient: xss(event.recipient)
