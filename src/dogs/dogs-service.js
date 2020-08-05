@@ -31,7 +31,10 @@ const DogsService = {
         breed: xss(dog.breed),
         size: xss(dog.size),
         gender: xss(dog.gender),
-        owner_id: xss(dog.owner_id)
+        owner_id: xss(dog.owner_id),
+        zip_code: xss(dog.zip_code),
+        city: xss(dog.city),
+        picture: xss(dog.picture),
       };
     },
     updateDog(db, id, updateFields) {
