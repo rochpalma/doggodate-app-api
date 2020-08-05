@@ -7,23 +7,32 @@ const EventsService = {
     getEventById(db, id) {
       return db.from('events').select('*').where('id', id).first();
     },
+    getEventsByUser(db, user_id) {
+      return (
+        db.from('events').select('*').where('user_id', user_id)
+        .orWhere('recipient',user_id)
+      );
+    },
+
     insertEvent(db, newEvent) {
       return db
         .insert(newEvent)
         .into('events')
         .returning('*')
         .then(([event]) => event)
-        .then((event) => EventsService.getEventById(db, event.id));
+       // .then((event) => EventsService.getEventById(db, event.id));
     },
     serializeEvent(event) {
       return {
         id: event.id,
         user_id: xss(event.user_id),
         event_name: xss(event.event_name),
+        description: xss(event.description),
         location: xss(event.location),
         created_at: xss(event.created_at),
-        started_at: xss(event.started_at),
-        end_at: xss(event.end_at),
+        event_date: xss(event.event_date),
+        start_time: xss(event.start_time),
+        end_time: xss(event.end_time),
         recipient: xss(event.recipient)
       };
     },

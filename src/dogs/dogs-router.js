@@ -53,6 +53,7 @@ dogsRouter
   .get((req, res, next) => {
     res.json(DogsService.serializeDog(res.dog));
   })
+  //to move
   .patch(jsonParser, (req, res, next) => {
     const {
         full_name, 
@@ -77,5 +78,16 @@ dogsRouter
       })
       .catch(next);
   });
+
+  dogsRouter
+  .route('/my-dogs/:owner_id')
+  .get((req, res, next) => {
+    DogsService.getDogsByOwnerId(req.app.get('db'), req.params.owner_id)
+      .then((dogs) => {
+        res.json(dogs.map(DogsService.serializeDog));
+      })
+
+      .catch(next);
+  })
 
 module.exports = dogsRouter;

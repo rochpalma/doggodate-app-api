@@ -9,6 +9,7 @@ const usersRouter = require('./users/users-router');
 const authRouter = require('./auth/auth-router');
 const dogsRouter = require('./dogs/dogs-router');
 const eventsRouter = require('./events/events-router');
+const commentsRouter = require('./comments/comments-router');
 
 const app = express()
 
@@ -24,6 +25,7 @@ app.use(cors());
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/dogs', dogsRouter);
+app.use('/api/comments', commentsRouter);
 app.use('/api/events', eventsRouter);
 
 app.get('/', (req, res) => {
