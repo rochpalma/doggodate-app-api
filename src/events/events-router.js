@@ -16,8 +16,8 @@ eventsRouter
       .catch(next);
   })
 .post(jsonParser, (req, res, next) => {
-    const { user_id, event_name, description, location, start_time, end_time, created_at, recipient } = req.body;
-    const newEvent = { user_id, event_name, description, location, start_time, end_time, recipient };
+    const { user_id, event_name, description, location, start_time, end_time, created_at, recipient, event_date } = req.body;
+    const newEvent = { user_id, event_name, description, location, start_time, end_time, recipient, event_date };
 
     for (const [key, value] of Object.entries(newEvent)) {
       if (value == null) {
