@@ -10,6 +10,7 @@ const authRouter = require('./auth/auth-router');
 const dogsRouter = require('./dogs/dogs-router');
 const eventsRouter = require('./events/events-router');
 const commentsRouter = require('./comments/comments-router');
+const sign_s3 = require('./users/images');
 
 const app = express()
 
@@ -21,7 +22,7 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
-//use thre routers
+
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/dogs', dogsRouter);
