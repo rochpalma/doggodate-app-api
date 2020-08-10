@@ -6,8 +6,14 @@ const CommentsService = {
     },
 
     getProfileComments(db,id) {
-      return db.select('*').from('comments').where('profile_id',id)
-
+      // return db.select('*').from('comments').where('profile_id',id)
+      return(
+        db.select('comments.*', 'users.full_name')
+        .from('users')
+        .innerJoin('comments','users.id', 'comments.user_id')
+        .where('comments.profile_id',id)
+        .orderBy('id')
+      )
     },
   
     insertComment(db, newComment) {

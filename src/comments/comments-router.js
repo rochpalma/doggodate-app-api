@@ -11,7 +11,8 @@ const serializeComment = comment => ({
   content: xss(comment.content),
   date_commented: comment.date_commented,
   profile_id: comment.profile_id,
-  user_id: comment.user_id
+  user_id: comment.user_id,
+  full_name: comment.full_name
 })
 
 commentsRouter

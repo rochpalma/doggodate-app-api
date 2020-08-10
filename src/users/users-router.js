@@ -64,7 +64,7 @@ usersRouter.route('/getdetails').get(requireAuth, (req, res) => {
 
 usersRouter
   .route('/:user_id')
-  .all(requireAuth)//has issue
+  .all(requireAuth)
   .all((req, res, next) => {
     UsersService.getUserById(req.app.get('db'), req.params.user_id).then(
       (user) => {
@@ -85,12 +85,16 @@ usersRouter
     const {
       full_name,
       email,
-      password
+      password,
+      mobile,
+      home
     } = req.body;
     const userToUpdate = {
       full_name,
       email,
-      password
+      password,
+      mobile,
+      home
     };
 
     UsersService.updateUser(req.app.get('db'), req.params.user_id, userToUpdate)

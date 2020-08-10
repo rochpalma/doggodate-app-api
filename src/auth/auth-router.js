@@ -32,14 +32,13 @@ authRouter
                 .then(compareMatch => {
                     if(!compareMatch)
                         return res.status(400).json({
-                            error: `Incorrect password`
+                            error: `Incorrect email or password`
                     })
-                    debugger
+                    
                     const sub = dbUser.email;
                     const payload = { user_id: dbUser.id };
                     res.send({
                         authToken: AuthService.createJwt(sub, payload),
-                        user_id: dbUser.id
                     });
                 });
 

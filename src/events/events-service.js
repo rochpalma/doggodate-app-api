@@ -8,10 +8,20 @@ const EventsService = {
       return db.from('events').select('*').where('id', id).first();
     },
     getEventsByUser(db, user_id) {
-      return (
-        db.from('events').select('*').where('user_id', user_id)
-        .orWhere('recipient',user_id)
-      );
+      // return (
+      //   db.from('events').distinct('*').where('user_id', user_id)
+      //   .orWhere('recipient',user_id)   
+      // );
+      return(
+        db.from('events').distinct('events.*','dog_profile.full_name')
+        // db.select('events.*','users.full_name')
+        // .from('events')
+        .innerJoin('dog_profile','events.recipient', 'dog_profile.owner_id')
+        .where('events.user_id', user_id)
+        .orWhere('events.recipient',user_id) 
+        
+      )
+     
     },
 
     insertEvent(db, newEvent) {
@@ -33,7 +43,8 @@ const EventsService = {
         event_date: xss(event.event_date),
         start_time: xss(event.start_time),
         end_time: xss(event.end_time),
-        recipient: xss(event.recipient)
+        recipient: xss(event.recipient),
+        full_name: event.full_name
       };
     },
     updateEvent(db, id, updateFields) {
