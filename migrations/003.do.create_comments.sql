@@ -4,4 +4,4 @@ CREATE TABLE comments (
     date_commented TIMESTAMPTZ DEFAULT now() NOT NULL,
     profile_id INTEGER REFERENCES dog_profile(id) ON DELETE CASCADE NOT NULL,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-);
+)
