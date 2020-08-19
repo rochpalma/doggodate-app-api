@@ -4,7 +4,7 @@ const DogsService = {
     getAllDogs(db) {
       return db.from('dog_profile').select('*');
     },
-    // getAllDogs(db,owner_id) {
+    // getAllDogsForFeed(db,owner_id) {
     //   return db.from('dog_profile').select('*').whereNot('owner_id',owner_id);
     // },
     getDogById(db, id) {
