@@ -291,6 +291,7 @@ CREATE TABLE dog_profile(
     gender TEXT NOT NULL,
     zip_code VARCHAR NOT NULL,
     city TEXT NOT NULL,
+    loc_state TEXT NOT NULL,
     picture TEXT,
     owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
 )
