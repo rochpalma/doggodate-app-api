@@ -97,8 +97,27 @@ usersRouter
       home
     };
 
+    // if (passwordError)
+    //   return res.status(400).json({ error: { message: passwordError } });
+
+    //     UsersService.hashPassword(password)
+    //       .then((hashedPassword) => {
+    //         // const newUser = {
+    //         //   full_name,
+    //         //   email,
+    //         //   password: hashedPassword,
+    //         // };
+    //         const userToUpdate = {
+    //           full_name,
+    //           email,
+    //           password: hashedPassword,
+    //           mobile,
+    //           home
+    //         };
+
     UsersService.updateUser(req.app.get('db'), req.params.user_id, userToUpdate)
       .then((numRowsAffected) => {
+        
         res.status(204).end();
       })
       .catch(next);
