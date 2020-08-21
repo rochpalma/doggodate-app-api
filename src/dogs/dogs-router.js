@@ -37,6 +37,7 @@ dogsRouter
 
   dogsRouter
   .route('/:dog_id')
+  .all(requireAuth)//temp
   .all((req, res, next) => {
     DogsService.getDogById(req.app.get('db'), req.params.dog_id).then(
       (dog) => {
@@ -64,7 +65,8 @@ dogsRouter
         gender,
         loc_state,
         city,
-        zip_code
+        zip_code,
+        picture
     } = req.body;
     const dogToUpdate = {
         full_name, 
@@ -75,7 +77,8 @@ dogsRouter
         gender,
         loc_state,
         city,
-        zip_code
+        zip_code,
+        picture
     };
 
     DogsService.updateDog(req.app.get('db'), req.params.dog_id, dogToUpdate)
