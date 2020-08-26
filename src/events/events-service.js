@@ -8,20 +8,12 @@ const EventsService = {
       return db.from('events').select('*').where('id', id).first();
     },
     getEventsByUser(db, user_id) {
-      // return (
-      //   db.from('events').distinct('*').where('user_id', user_id)
-      //   .orWhere('recipient',user_id)   
-      // );
       return(
         db.from('events').distinct('events.*','dog_profile.full_name')
-        // db.select('events.*','users.full_name')
-        // .from('events')
         .innerJoin('dog_profile','events.recipient', 'dog_profile.owner_id')
         .where('events.user_id', user_id)
-        .orWhere('events.recipient',user_id) 
-        
-      )
-     
+        .orWhere('events.recipient',user_id)        
+      )     
     },
 
     insertEvent(db, newEvent) {

@@ -54,7 +54,7 @@ dogsRouter
   .get((req, res, next) => {
     res.json(DogsService.serializeDog(res.dog));
   })
-  //to move
+  
   .patch(jsonParser, (req, res, next) => {
     const {
         full_name, 

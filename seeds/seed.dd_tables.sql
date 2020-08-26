@@ -1,9 +1,9 @@
 
 INSERT INTO users (full_name, email, "password") VALUES
     (
-        'Roch',
+        'Roch Palma',
         'rop@gmail.com',
-        'password'
+        'Abcd3fgh!'
     );
 
 
