@@ -4,7 +4,7 @@ const DogsService = {
     getAllDogs(db) {
       return db.from('dog_profile').select('*');
     },
-    // getAllDogs(db,owner_id) {
+    // getAllDogsForFeed(db,owner_id) {
     //   return db.from('dog_profile').select('*').whereNot('owner_id',owner_id);
     // },
     getDogById(db, id) {
@@ -35,10 +35,12 @@ const DogsService = {
         zip_code: xss(dog.zip_code),
         city: xss(dog.city),
         picture: xss(dog.picture),
+        loc_state: xss(dog.loc_state),
       };
     },
     updateDog(db, id, updateFields) {
-      return DogsService.getAlldogs(db).where({ id }).update(updateFields);
+      //return DogsService.getAlldogs(db).where({ id }).update(updateFields);
+      return db.from('dog_profile').select('*').where({ id }).update(updateFields);
     }
   };
   

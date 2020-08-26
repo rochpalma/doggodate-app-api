@@ -4,5 +4,5 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     full_name TEXT NOT NULL,
     mobile TEXT,
-    home TEXT,
+    home TEXT
 );

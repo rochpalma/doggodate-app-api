@@ -1,7 +1,5 @@
 const express = require('express');
 const EventsService = require('./events-service');
-const { requireAuth } = require("../middleware/jwt-auth");
-
 const eventsRouter = express.Router();
 const jsonParser = express.json();
 

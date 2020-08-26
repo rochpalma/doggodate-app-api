@@ -64,7 +64,7 @@ usersRouter.route('/getdetails').get(requireAuth, (req, res) => {
 
 usersRouter
   .route('/:user_id')
-  .all(requireAuth)
+  //.all(requireAuth)
   .all((req, res, next) => {
     UsersService.getUserById(req.app.get('db'), req.params.user_id).then(
       (user) => {
@@ -89,19 +89,42 @@ usersRouter
       mobile,
       home
     } = req.body;
-    const userToUpdate = {
-      full_name,
-      email,
-      password,
-      mobile,
-      home
-    };
+    // const userToUpdate = {
+    //   full_name,
+    //   email,
+    //   password,
+    //   mobile,
+    //   home
+    // };
+    const passwordError = UsersService.validatePassword(password);
+    
+    if (passwordError)
+      return res.status(400).json({ error: { message: passwordError } });
 
-    UsersService.updateUser(req.app.get('db'), req.params.user_id, userToUpdate)
-      .then((numRowsAffected) => {
-        res.status(204).end();
+         UsersService.hashPassword(password)
+          .then((hashedPassword) => {
+            // const newUser = {
+            //   full_name,
+            //   email,
+            //   password: hashedPassword,
+            // };
+            const userToUpdate = {
+              full_name,
+              email,
+              password: hashedPassword,
+              mobile,
+              home
+            }
+          // })
+
+          return  UsersService.updateUser(req.app.get('db'), req.params.user_id, userToUpdate)
+            .then((numRowsAffected) => {
+              
+              res.status(204).end();
+        })
       })
-      .catch(next);
-  });
+  })
+  // .catch(next);
+
 
 module.exports = usersRouter;

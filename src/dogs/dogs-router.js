@@ -17,8 +17,8 @@ dogsRouter
   })
   // .post(requireAuth, jsonParser, (req, res, next) => {
 .post(jsonParser, (req, res, next) => {
-    const { full_name, age, about_me, breed, size, gender, owner_id } = req.body;
-    const newDog = { full_name, age, about_me, breed, size, gender, owner_id };
+    const { full_name, age, about_me, breed, size, gender, owner_id, picture, loc_state, city, zip_code } = req.body;
+    const newDog = { full_name, age, about_me, breed, size, gender, owner_id, picture, loc_state, city, zip_code  };
 
     for (const [key, value] of Object.entries(newDog)) {
       if (value == null) {
@@ -37,6 +37,7 @@ dogsRouter
 
   dogsRouter
   .route('/:dog_id')
+  .all(requireAuth)//temp
   .all((req, res, next) => {
     DogsService.getDogById(req.app.get('db'), req.params.dog_id).then(
       (dog) => {
@@ -53,7 +54,7 @@ dogsRouter
   .get((req, res, next) => {
     res.json(DogsService.serializeDog(res.dog));
   })
-  //to move
+  
   .patch(jsonParser, (req, res, next) => {
     const {
         full_name, 
@@ -61,7 +62,11 @@ dogsRouter
         about_me, 
         breed, 
         size, 
-        gender
+        gender,
+        loc_state,
+        city,
+        zip_code,
+        picture
     } = req.body;
     const dogToUpdate = {
         full_name, 
@@ -69,7 +74,11 @@ dogsRouter
         about_me, 
         breed, 
         size, 
-        gender
+        gender,
+        loc_state,
+        city,
+        zip_code,
+        picture
     };
 
     DogsService.updateDog(req.app.get('db'), req.params.dog_id, dogToUpdate)
@@ -89,5 +98,7 @@ dogsRouter
 
       .catch(next);
   })
+
+
 
 module.exports = dogsRouter;
