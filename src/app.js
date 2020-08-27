@@ -31,7 +31,7 @@ app.use('/api/events', eventsRouter);
 app.use('/api/profile', imagesRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello, world!')
+    res.send('Hello, rochelle!')
 })
 
 app.use(function errorHandler(error, req, res, next) {
