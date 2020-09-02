@@ -32,7 +32,7 @@ app.use('/api/events', eventsRouter);
 app.use('/api/profile', imagesRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello, rochelle!')
+    res.send('Hello, Doggodate User!')
 })
 
 app.use(function errorHandler(error, req, res, next) {
