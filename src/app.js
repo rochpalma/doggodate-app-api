@@ -9,7 +9,7 @@ const authRouter = require('./auth/auth-router');
 const dogsRouter = require('./dogs/dogs-router');
 const eventsRouter = require('./events/events-router');
 const commentsRouter = require('./comments/comments-router');
-// const imagesRouter = require('./users/images-route');
+const imagesRouter = require('./users/images-route');
 
 console.log(process.env.API_TOKEN)
 
@@ -29,7 +29,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/dogs', dogsRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/events', eventsRouter);
-// app.use('/api/profile', imagesRouter);
+app.use('/api/profile', imagesRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, Doggodate User!')
