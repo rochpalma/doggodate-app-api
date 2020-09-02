@@ -7,6 +7,7 @@ const path = require( 'path' );
 const url = require('url');
 const router = express.Router();
 
+console.log(process.env.BUCKET)
 const s3 = new aws.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
