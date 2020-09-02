@@ -11,6 +11,7 @@ const eventsRouter = require('./events/events-router');
 const commentsRouter = require('./comments/comments-router');
 const imagesRouter = require('./users/images-route');
 
+console.log(process.env.API_TOKEN)
 
 const app = express()
 
