@@ -11,6 +11,7 @@ const eventsRouter = require('./events/events-router');
 const commentsRouter = require('./comments/comments-router');
 const imagesRouter = require('./users/images-route');
 
+console.log(process.env.API_TOKEN)
 
 const app = express()
 
@@ -31,7 +32,7 @@ app.use('/api/events', eventsRouter);
 app.use('/api/profile', imagesRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello, world!')
+    res.send('Hello, Doggodate User!')
 })
 
 app.use(function errorHandler(error, req, res, next) {

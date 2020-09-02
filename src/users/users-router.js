@@ -89,13 +89,6 @@ usersRouter
       mobile,
       home
     } = req.body;
-    // const userToUpdate = {
-    //   full_name,
-    //   email,
-    //   password,
-    //   mobile,
-    //   home
-    // };
     const passwordError = UsersService.validatePassword(password);
     
     if (passwordError)
@@ -103,11 +96,6 @@ usersRouter
 
          UsersService.hashPassword(password)
           .then((hashedPassword) => {
-            // const newUser = {
-            //   full_name,
-            //   email,
-            //   password: hashedPassword,
-            // };
             const userToUpdate = {
               full_name,
               email,
@@ -115,11 +103,9 @@ usersRouter
               mobile,
               home
             }
-          // })
-
+    
           return  UsersService.updateUser(req.app.get('db'), req.params.user_id, userToUpdate)
             .then((numRowsAffected) => {
-              
               res.status(204).end();
         })
       })
