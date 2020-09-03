@@ -4,22 +4,18 @@ const aws = require( 'aws-sdk' );
 const multerS3 = require( 'multer-s3' );
 const multer = require('multer');
 const path = require( 'path' );
-const url = require('url');
 const router = express.Router();
 
-console.log(process.env.BUCKET)
 const s3 = new aws.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    // bucket: process.env.BUCKET
-    // bucket: "doggodate-images"
+    bucket: process.env.BUCKET
    });
 
    const profileImgUpload = multer({
     storage: multerS3({
      s3: s3,
-     bucket: "doggodate-images",
-    //  bucket:  process.env.BUCKET,
+     bucket: 'doggodate-images',
      acl: 'public-read',
      key: function (req, file, cb) {
       cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
