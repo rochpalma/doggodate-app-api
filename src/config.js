@@ -5,8 +5,5 @@ module.exports = {
     DATABASE_URL: process.env.DATABASE_URL || 'postgresql://dunder_mifflin@localhost/doggodate',
     TEST_DATABASE_URL: process.env.TEST_DATABASE_URL || 'postgresql://dunder_mifflin@localhost/doggodate-test',
     JWT_SECRET: process.env.JWT_SECRET || 'change-this-secret',
-    JWT_EXPIRY: process.env.JWT_EXPIRY || '3h',
-    AWS_ACCESS_KEY_ID:"AKIA372VDLSLG4NXWMFD",
-    AWS_SECRET_ACCESS_KEY:"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",
-    BUCKET:"doggodate-images"
+    JWT_EXPIRY: process.env.JWT_EXPIRY || '3h'
 }
